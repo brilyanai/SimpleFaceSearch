@@ -1,0 +1,6 @@
+flask
+mysql-connector-python
+faiss-cpu
+opencv-python
+insightface
+numpy

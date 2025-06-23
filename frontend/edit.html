@@ -1,0 +1,12 @@
+<!doctype html>
+<html>
+  <head><title>Edit Data</title></head>
+  <body>
+    <h2>Edit Data Wajah</h2>
+    <form method="POST">
+      Nama: <input type="text" name="name" value="{{ face.name }}"><br><br>
+      <input type="submit" value="Simpan">
+    </form>
+    <a href="{{ url_for('index') }}">Kembali</a>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload Wajah</title>
+</head>
+<body>
+  <h2>Upload Wajah Baru</h2>
+  <form method="POST" enctype="multipart/form-data">
+    <label>Nama:</label><br>
+    <input type="text" name="name" required><br><br>
+
+    <label>Gambar Wajah:</label><br>
+    <input type="file" name="image" accept="image/*" required><br><br>
+
+    <button type="submit">Upload</button>
+  </form>
+
+  <br>
+  <a href="{{ url_for('index') }}">← Kembali ke daftar wajah</a>
+</body>
+</html>

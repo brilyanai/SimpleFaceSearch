@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hasil Pencarian Wajah</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid #ccc;
+    }
+
+    img {
+      border-radius: 4px;
+      border: 1px solid #aaa;
+    }
+
+    .status-ok {
+      color: green;
+      font-weight: bold;
+    }
+
+    .status-fail {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h2>Hasil Deteksi dan Pencarian Wajah</h2>
+
+  <p><strong>Gambar Diupload:</strong></p>
+  <img src="/{{ query_image }}" width="400"><br><br>
+
+  <h3>Deteksi Wajah: {{ hasil|length }}</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Wajah Terdeteksi</th>
+        <th>Wajah Database</th>
+        <th>Nama</th>
+        <th>Score Similarity</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for row in hasil %}
+      <tr>
+        <td>
+          {% if row.detected_crop %}
+          <img src="{{ url_for('data_faces', filename=row.detected_crop.split('/')[-1].split('\\')[-1]) }}" height="60">
+          {% else %}
+          Tidak tersedia
+          {% endif %}
+        </td>
+        <td>
+          {% if row.matched_img %}
+          <img src="{{ url_for('data_faces', filename=row.matched_img.split('/')[-1].split('\\')[-1]) }}" height="60">
+          {% else %}
+          Tidak ditemukan
+          {% endif %}
+        </td>
+        <td>{{ row.matched_name }}</td>
+        <td>{{ row.score | round(4) }}</td>
+        <td>{{ row.status }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <br>
+  <a href="{{ url_for('search') }}">🔄 Coba Gambar Lain</a> |
+  <a href="{{ url_for('index') }}">← Kembali</a>
+</body>
+</html>

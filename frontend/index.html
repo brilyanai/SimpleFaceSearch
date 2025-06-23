@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Daftar Wajah</title>
+</head>
+<body>
+  <h2>Daftar Wajah yang Tersimpan</h2>
+
+  <table border="1" cellpadding="10">
+    <thead>
+      <tr>
+        <th>Nama</th>
+        <th>Jumlah Foto</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for face in faces %}
+      <tr>
+        <td>{{ face.name }}</td>
+        <td>{{ face.photo_count }}</td>
+        <td><a href="{{ url_for('face_detail', face_id=face.id) }}">{{ face.name }}</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <br>
+  <a href="{{ url_for('upload') }}">Tambah Wajah Baru</a> |
+  <a href="{{ url_for('search') }}">Cari Wajah</a>
+</body>
+</html>

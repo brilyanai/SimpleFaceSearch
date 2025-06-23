@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head><title>Hasil Pencarian</title></head>
+<body>
+  <h2>Hasil Pencarian Wajah</h2>
+
+  <p><strong>Gambar Dicari:</strong></p>
+  <img src="/{{ query_image }}" width="150"><br><br>
+
+  <p><strong>Kecocokan:</strong> {{ similarity }}</p>
+
+  {% if face %}
+    <p><strong>Ditemukan:</strong></p>
+    <p>Nama: {{ face.name }}</p>
+    <img src="/{{ face.image_path }}" width="150">
+  {% else %}
+    <p>Tidak ada wajah ditemukan di database.</p>
+  {% endif %}
+
+  <br><a href="{{ url_for('search') }}">Coba Lagi</a> |
+  <a href="{{ url_for('index') }}">← Kembali</a>
+</body>
+</html>

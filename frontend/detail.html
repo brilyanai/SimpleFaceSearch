@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Detail Wajah</title>
+</head>
+<body>
+  <h2>Data Wajah: {{ face.name }}</h2>
+
+  <a href="{{ url_for('edit_face', face_id=face.id) }}">✏️ Edit Nama</a> |
+  <form action="{{ url_for('delete_face', face_id=face.id) }}" method="post" style="display:inline;" onsubmit="return confirm('Yakin ingin menghapus seluruh data ini?');">
+    <button type="submit">❌ Hapus Semua</button>
+  </form>
+  <br><br>
+
+  <h3>Foto Tersimpan ({{ photos|length }})</h3>
+  {% for photo in photos %}
+    <img src="/{{ photo.image_path }}" width="120" style="margin:10px;">
+  {% endfor %}
+
+  <br><br>
+  <a href="{{ url_for('index') }}">← Kembali ke daftar wajah</a>
+</body>
+</html>
